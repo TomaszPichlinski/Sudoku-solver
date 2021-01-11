@@ -90,3 +90,13 @@ def check_if_correct(row_of_squares, square, row, number_in_square, grid, number
                 return True
     return False
 
+
+def general_check(new_Grid):
+    for x in range(3):
+        for y in range(3):
+            for z in range(3):
+                for a in range(3):
+                    if new_Grid[x][y][z][a] == ' ':
+                        return False
+    return True
+
