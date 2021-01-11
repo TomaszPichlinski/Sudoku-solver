@@ -50,27 +50,43 @@ def display(Grid):
             print("")
         print(" ")
 
-
-
-def check(number_to_check, row_of_squares, square, row, number_in_square, Grid):
+def square_check(number_to_check, row_of_squares, square, grid):
     for x in range(3):
         for y in range(3):
-            if number_to_check == Grid[row_of_squares][square][x][y]:
-                print("ŹLE")
-            else:
-                print("OK")
-    print("Next-check")
-    for x in range(3):
-        for y in range(3):
-            if number_to_check == Grid[row_of_squares][x][row][y]:
-                print("ŹLE")
-            else:
-                print("OK")
-    print("Next-check")
-    for x in range(3):
-        for y in range(3):
-            if number_to_check == Grid[x][square][y][number_in_square]:
-                print("ŹLE")
-            else:
-                print("OK")
+            if number_to_check == grid[row_of_squares][square][x][y]:
+                return False
     return True
+
+def row_check(number_to_check, row_of_squares, row, grid):
+    for x in range(3):
+        for y in range(3):
+            if number_to_check == grid[row_of_squares][x][row][y]:
+                return False
+    return True
+
+def column_check(number_to_check, square, number_in_square, grid):
+    for x in range(3):
+        for y in range(3):
+            if number_to_check == grid[x][square][y][number_in_square]:
+                return False
+    return True
+
+def avaible_numbers(row_of_squares, square, row, number_in_square, grid, numbers):
+
+    good_numbers = []
+    for number in numbers:
+
+        if check_if_correct(row_of_squares, square, row, number_in_square, grid, number):
+            good_numbers.append(number)
+    return good_numbers
+
+def check_if_correct(row_of_squares, square, row, number_in_square, grid, number):
+    check1 = square_check(number, row_of_squares, square, grid)
+    if check1:
+        check2 = row_check(number, row_of_squares, row, grid)
+        if check2:
+            check3 = column_check(number, square, number_in_square, grid)
+            if check3:
+                return True
+    return False
+
