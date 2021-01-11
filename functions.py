@@ -72,27 +72,14 @@ def column_check(number_to_check, square, number_in_square, grid):
                 return False
     return True
 
-def avaible_numbers(row_of_squares, square, row, number_in_square, grid, numbers):
-
-    good_numbers = []
-    for number in numbers:
-
-        if check_if_correct(row_of_squares, square, row, number_in_square, grid, number):
-            good_numbers.append(number)
-    return good_numbers
 
 def check_if_correct(row_of_squares, square, row, number_in_square, grid, number):
     check1 = square_check(number, row_of_squares, square, grid)
-    print(check1)
     if check1:
-        print("1")
         check2 = row_check(number, row_of_squares, row, grid)
         if check2:
-            print("2")
             check3 = column_check(number, square, number_in_square, grid)
-
             if check3:
-                print("3")
                 return True
     return False
 
@@ -111,13 +98,10 @@ def solve(new_Grid):
     find = find_empty(new_Grid)
     if not find:
         return True
-    else:
-        found = find
-        print(found)
     for i in range(1,10):
-        if check_if_correct(found[0], found[1], found[2], found[3], new_Grid, str(i)):
-            new_Grid[found[0]][found[1]][found[2]][found[3]] = str(i)
+        if check_if_correct(find[0], find[1], find[2], find[3], new_Grid, str(i)):
+            new_Grid[find[0]][find[1]][find[2]][find[3]] = str(i)
             if solve(new_Grid):
                 return True
-            new_Grid[found[0]][found[1]][found[2]][found[3]] = ' '
+            new_Grid[find[0]][find[1]][find[2]][find[3]] = ' '
     return False
