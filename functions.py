@@ -3,14 +3,15 @@ import requests
 import random
 
 def populate(numbers):
-    link_strona = "http://mojesudoku.pl/gra-sudoku/niemozliwa_bgbigdb.html"
+    link_strona = "http://mojesudoku.pl/gra-sudoku/niemozliwa_aheedfd.html"
     html_content = requests.get(link_strona).text
     soup = BeautifulSoup(html_content, "lxml")
     Grid = []
     Square_row = []
     Square = []
     Row = []
-
+    wpisane = []
+    licznik_wpisanych = 0
     licznik_row = 0
     licznik_square = 0
     licznik_square_row = 0
@@ -19,6 +20,8 @@ def populate(numbers):
         number_in_square = str(link)[37]
         if (number_in_square not in numbers):
             number_in_square = ' '
+        if(number_in_square in numbers):
+            wpisane.append(licznik_wpisanych)
         if(licznik_row<3):
             Row.append(number_in_square)
             licznik_row+=1
@@ -36,8 +39,8 @@ def populate(numbers):
                         licznik_square_row=0
                         Grid.append(Square_row)
                         Square_row=[]
-
-    return Grid
+        licznik_wpisanych+=1
+    return [Grid, wpisane]
 
 
 def display(Grid):
