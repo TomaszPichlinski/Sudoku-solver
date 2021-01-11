@@ -1,4 +1,11 @@
-def populate(soup, numbers):
+from bs4 import BeautifulSoup
+import requests
+
+
+def populate(numbers):
+    link_strona = "http://mojesudoku.pl/gra-sudoku/niemozliwa_bgbigdb.html"
+    html_content = requests.get(link_strona).text
+    soup = BeautifulSoup(html_content, "lxml")
     Grid = []
     Square_row = []
     Square = []
@@ -37,8 +44,33 @@ def display(Grid):
     for x in range(3):
         for y in range(3):
             for z in range(3):
-                for square in range(3):
-                    print(f'[{Grid[x][z][y][square]}]', end='')
+                for field in range(3):
+                    print(f'[{Grid[x][z][y][field]}]', end='')
                 print(" ", end="")
             print("")
         print(" ")
+
+
+
+def check(number_to_check, row_of_squares, square, row, number_in_square, Grid):
+    for x in range(3):
+        for y in range(3):
+            if number_to_check == Grid[row_of_squares][square][x][y]:
+                print("ŹLE")
+            else:
+                print("OK")
+    print("Next-check")
+    for x in range(3):
+        for y in range(3):
+            if number_to_check == Grid[row_of_squares][x][row][y]:
+                print("ŹLE")
+            else:
+                print("OK")
+    print("Next-check")
+    for x in range(3):
+        for y in range(3):
+            if number_to_check == Grid[x][square][y][number_in_square]:
+                print("ŹLE")
+            else:
+                print("OK")
+    return True
