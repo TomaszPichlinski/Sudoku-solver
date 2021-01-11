@@ -1,16 +1,15 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+from bs4 import BeautifulSoup
+import requests
+import functions
+link_strona="http://mojesudoku.pl/gra-sudoku/niemozliwa_bgbigdb.html"
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+html_content = requests.get(link_strona).text
+numbers = ['1','2', '3', '4', '5', '6', '7','8','9']
+soup = BeautifulSoup(html_content, "lxml")
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+
+
+Grid = functions.populate(soup, numbers)
+functions.display(Grid)
+
