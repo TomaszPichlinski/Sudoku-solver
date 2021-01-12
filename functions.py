@@ -3,8 +3,11 @@ import requests
 import random
 
 def populate(numbers):
-    link_strona = "http://mojesudoku.pl/gra-sudoku/niemozliwa_aheedfd.html"
-    html_content = requests.get(link_strona).text
+    link_strona = []
+    with open('link.txt', 'r') as f:
+        for line in f:
+            link_strona.append(line[:-1])
+    html_content = requests.get(link_strona[0]).text
     soup = BeautifulSoup(html_content, "lxml")
     Grid = []
     Square_row = []
