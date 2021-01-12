@@ -13,13 +13,14 @@ while True:
     new_Grid = copy.deepcopy(Original_grid)
     functions.solve(new_Grid)
     check = -1
+    print("XD")
     pyautogui.keyDown('alt')
     pyautogui.keyDown('tab')
     pyautogui.keyUp('alt')
     pyautogui.keyUp('tab')
     pyautogui.click(x=400, y=400)
     pyautogui.press('tab')
-    time.sleep(5)
+    time.sleep(1)
     for x in range(3):
         for y in range(3):
             for z in range(3):
@@ -31,11 +32,11 @@ while True:
                         pyautogui.press(new_Grid[x][y][z][a])
                         pyautogui.press('tab')
     pyautogui.press('enter')
-    time.sleep(5)
+    time.sleep(2)
     pyautogui.click(x=1265, y=321)
-    time.sleep(2)
+    time.sleep(3)
     pyautogui.click(x=650, y=800)
-    time.sleep(2)
+    time.sleep(3)
     pyautogui.click(x=539, y=52)
     pyautogui.keyDown('ctrl')
     pyautogui.keyDown('c')
@@ -53,3 +54,7 @@ while True:
     pyautogui.keyDown('v')
     pyautogui.keyUp('ctrl')
     pyautogui.keyUp('v')
+    pyautogui.keyDown('ctrl')
+    pyautogui.keyDown('s')
+    pyautogui.keyUp('ctrl')
+    pyautogui.keyUp('s')
