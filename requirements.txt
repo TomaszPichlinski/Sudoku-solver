@@ -13,4 +13,4 @@ PyScreeze==0.1.26
 PyTweening==1.0.3
 requests==2.25.1
 soupsieve==2.2
-urllib3==1.26.3
+urllib3==1.26.5
